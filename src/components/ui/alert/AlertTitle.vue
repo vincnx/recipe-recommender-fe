@@ -1,0 +1,22 @@
+<script setup lang="ts">
+import { cn } from "@/lib/utils";
+import type { HTMLAttributes } from "vue";
+
+const props = defineProps<{
+  class?: HTMLAttributes["class"];
+}>();
+</script>
+
+<template>
+  <div
+    data-slot="alert-title"
+    :class="
+      cn(
+        'font-handwrite col-start-2 line-clamp-1 min-h-4 text-2xl font-bold tracking-tight',
+        props.class,
+      )
+    "
+  >
+    <slot />
+  </div>
+</template>

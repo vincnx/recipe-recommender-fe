@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Concert+One&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Fredoka:wght@300..700&family=Itim&family=Londrina+Shadow&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Concert+One&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Edu+SA+Beginner:wght@400..700&family=Fredoka:wght@300..700&family=Itim&family=Londrina+Shadow&display=swap");
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -23,7 +23,7 @@
   --destructive: oklch(0.6627 0.0978 20.0041);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.501 0.1032 78.5392);
-  --input: oklch(1 0 0);
+  --input: oklch(0.501 0.1032 78.5392);
   --ring: oklch(0.7058 0 0);
   --chart-1: oklch(0.3211 0 0);
   --chart-2: oklch(0.4495 0 0);
@@ -39,7 +39,8 @@
   --sidebar-border: oklch(0.8078 0 0);
   --sidebar-ring: oklch(0.7058 0 0);
   --link: oklch(0.6647 0.1431 240.35);
-  --font-sans: "Edu AU VIC WA NT Hand";
+  --font-handwrite: "Edu AU VIC WA NT Hand";
+  --font-sans: "Edu SA Beginner";
   --font-serif: "Times New Roman", Times, serif;
   --font-mono: "Courier New", Courier, monospace;
   --radius: 0.8rem;
@@ -99,7 +100,8 @@
   --sidebar-border: oklch(0.4276 0 0);
   --sidebar-ring: oklch(0.8078 0 0);
   --link: oklch(0.6647 0.1431 240.35);
-  --font-sans: "Edu AU VIC WA NT Hand";
+  --font-handwrite: "Edu AU VIC WA NT Hand";
+  --font-sans: "Edu SA Beginner";
   --font-serif: Georgia, serif;
   --font-mono: "Fira Code", "Courier New", monospace;
   --radius: 0.8rem;
@@ -158,6 +160,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-link: var(--link);
 
+  --font-handwrite: var(--font-handwrite);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
@@ -197,19 +200,19 @@ body {
   }
 
   h1 {
-    @apply text-4xl font-extrabold tracking-tight lg:text-5xl;
+    @apply font-handwrite text-4xl font-extrabold tracking-tight lg:text-5xl;
   }
 
   h2 {
-    @apply text-3xl font-semibold tracking-tight first:mt-0;
+    @apply font-handwrite text-3xl font-semibold tracking-tight first:mt-0;
   }
 
   h3 {
-    @apply text-2xl font-semibold tracking-tight;
+    @apply font-handwrite text-2xl font-semibold tracking-tight;
   }
 
   h4 {
-    @apply text-xl font-semibold tracking-tight;
+    @apply font-handwrite text-xl font-semibold tracking-tight;
   }
 
   blockquote {
@@ -270,5 +273,14 @@ body {
 
   .max-w-8xl {
     @apply max-w-[88rem];
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
 }
