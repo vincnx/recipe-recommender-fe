@@ -2,12 +2,15 @@
 import IngredientForm from "@/components/form/IngredientForm.vue";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import { useFetchRecipes } from "@/composables/requests/useFetchRecipes";
 import type { IngredientSchema } from "@/schemas/ingredient.schema";
 import { ingredientSchema } from "@/schemas/ingredient.schema";
 import { toTypedSchema } from "@vee-validate/zod";
 import { CircleQuestionMark } from "lucide-vue-next";
 import { useForm } from "vee-validate";
 import { watch } from "vue";
+
+const { mutate } = useFetchRecipes();
 
 const form = useForm<IngredientSchema>({
   validationSchema: toTypedSchema(ingredientSchema),
@@ -18,7 +21,13 @@ const form = useForm<IngredientSchema>({
 
 function handleSubmit() {
   return form.handleSubmit((values) => {
-    console.log(values);
+    mutate({
+      payload: {
+        ingredients: values.ingredients.filter(
+          (ingredient) => ingredient !== undefined,
+        ),
+      },
+    });
   })();
 }
 
