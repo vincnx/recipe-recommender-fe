@@ -3,6 +3,7 @@ import IngredientForm from "@/components/form/IngredientForm.vue";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { useFetchRecipes } from "@/composables/requests/useFetchRecipes";
+import { RecipeOverlay } from "@/features/(header)/@play/components";
 import type { IngredientSchema } from "@/schemas/ingredient.schema";
 import { ingredientSchema } from "@/schemas/ingredient.schema";
 import { toTypedSchema } from "@vee-validate/zod";
@@ -72,5 +73,7 @@ watch(
         <Button type="submit">Find Recipes</Button>
       </form>
     </div>
+
+    <RecipeOverlay />
   </div>
 </template>
