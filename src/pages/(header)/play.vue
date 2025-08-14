@@ -2,16 +2,17 @@
 import IngredientForm from "@/components/form/IngredientForm.vue";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { useFetchRecipes } from "@/composables/requests/useFetchRecipes";
-import { RecipeOverlay } from "@/features/(header)/@play/components";
+import { useFetchRecommendations } from "@/composables/requests/useFetchRecommendations";
 import type { IngredientSchema } from "@/schemas/ingredient.schema";
 import { ingredientSchema } from "@/schemas/ingredient.schema";
 import { toTypedSchema } from "@vee-validate/zod";
 import { CircleQuestionMark } from "lucide-vue-next";
 import { useForm } from "vee-validate";
 import { watch } from "vue";
+import { useRouter } from "vue-router";
 
-const { mutate } = useFetchRecipes();
+const { mutate, isPending } = useFetchRecommendations();
+const router = useRouter();
 
 const form = useForm<IngredientSchema>({
   validationSchema: toTypedSchema(ingredientSchema),
@@ -22,14 +23,30 @@ const form = useForm<IngredientSchema>({
 
 function handleSubmit() {
   return form.handleSubmit((values) => {
-    mutate({
-      payload: {
-        ingredients: values.ingredients.filter(
-          (ingredient) => ingredient !== undefined,
-        ),
+    mutate(
+      {
+        payload: {
+          ingredients: values.ingredients.filter(
+            (ingredient) => ingredient !== undefined,
+          ),
+        },
       },
-    });
+      {
+        onSuccess: (data) => {
+          router.push({
+            path: "/recipes",
+            query: {
+              ids: data.map((recipe) => recipe._id),
+            },
+          });
+        },
+      },
+    );
   })();
+}
+
+function isFormValid() {
+  return form.values.ingredients[0] !== undefined;
 }
 
 watch(
@@ -59,7 +76,7 @@ watch(
         </ul>
       </AlertDescription>
     </Alert>
-    <div class="relative mx-auto max-w-3xl">
+    <div class="relative mx-auto mb-8 max-w-3xl">
       <img src="@/assets/recipe-paper.svg" class="absolute w-full" />
       <form
         @submit.prevent="handleSubmit"
@@ -70,10 +87,14 @@ watch(
         <div class="scrollbar-hide flex-1 overflow-y-scroll">
           <IngredientForm :form="form" />
         </div>
-        <Button type="submit">Find Recipes</Button>
+        <Button
+          :disabled="!isFormValid()"
+          :is-loading="isPending"
+          type="submit"
+        >
+          Find Recipes
+        </Button>
       </form>
     </div>
-
-    <RecipeOverlay />
   </div>
 </template>

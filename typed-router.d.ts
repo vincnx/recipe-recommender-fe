@@ -21,8 +21,10 @@ declare module 'vue-router/auto-routes' {
     '/(general)': RouteRecordInfo<'/(general)', '/', Record<never, never>, Record<never, never>, '/(general)/' | '/(general)/about'>,
     '/(general)/': RouteRecordInfo<'/(general)/', '/', Record<never, never>, Record<never, never>>,
     '/(general)/about': RouteRecordInfo<'/(general)/about', '/about', Record<never, never>, Record<never, never>>,
-    '/(header)': RouteRecordInfo<'/(header)', '/', Record<never, never>, Record<never, never>, '/(header)/play'>,
+    '/(header)': RouteRecordInfo<'/(header)', '/', Record<never, never>, Record<never, never>, '/(header)/play' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]'>,
     '/(header)/play': RouteRecordInfo<'/(header)/play', '/play', Record<never, never>, Record<never, never>>,
+    '/(header)/recipes/': RouteRecordInfo<'/(header)/recipes/', '/recipes', Record<never, never>, Record<never, never>>,
+    '/(header)/recipes/[recipeId]': RouteRecordInfo<'/(header)/recipes/[recipeId]', '/recipes/:recipeId', { recipeId: ParamValue<true> }, { recipeId: ParamValue<false> }>,
   }
 
   /**
@@ -49,11 +51,19 @@ declare module 'vue-router/auto-routes' {
       views: never
     }
     'src/pages/(header).vue': {
-      routes: '/(header)' | '/(header)/play'
+      routes: '/(header)' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]' | '/(header)/play' | '/(header)/recipes'
       views: 'default'
     }
     'src/pages/(header)/play.vue': {
       routes: '/(header)/play'
+      views: never
+    }
+    'src/pages/(header)/recipes/index.vue': {
+      routes: '/(header)/recipes/'
+      views: never
+    }
+    'src/pages/(header)/recipes/[recipeId].vue': {
+      routes: '/(header)/recipes/[recipeId]'
       views: never
     }
   }
