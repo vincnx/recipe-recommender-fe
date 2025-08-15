@@ -61,7 +61,7 @@ watch(
 </script>
 
 <template>
-  <div class="space-y-4 px-4 sm:px-8">
+  <div class="space-y-4 px-4 py-4 sm:px-8">
     <Alert class="mx-auto max-w-3xl">
       <CircleQuestionMark />
       <AlertTitle>How to use this</AlertTitle>

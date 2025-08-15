@@ -8,7 +8,7 @@ const { data } = useFetchRecipe(route.params.recipeId as string);
 </script>
 
 <template>
-  <div class="px-4 sm:px-8">
+  <div class="px-4 py-4 sm:px-8">
     <div
       class="border-primary bg-card mx-auto mb-8 flex h-full min-h-[calc(100dvh-8rem)] max-w-3xl rounded-xl border-6 p-4"
     >

@@ -6,7 +6,7 @@ import { RouterView } from "vue-router";
 <template>
   <Header />
   <div
-    class="bg-background max-w-7x mx-auto mt-16 h-full min-h-[calc(100dvh-4rem)]"
+    class="bg-background max-w-7x mx-auto mt-16 h-full min-h-[calc(100dvh-4rem)] bg-[url(@/assets/food-pattern.svg)]"
   >
     <RouterView></RouterView>
   </div>
