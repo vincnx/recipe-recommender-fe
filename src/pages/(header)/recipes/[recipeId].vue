@@ -1,16 +1,31 @@
 <script setup lang="ts">
+import { Button } from "@/components/ui/button";
 import { useFetchRecipe } from "@/composables/requests/useFetchRecipe";
-import { useRoute } from "vue-router";
+import { ArrowLeft } from "lucide-vue-next";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute("/recipes/:recipeId");
 
 const { data } = useFetchRecipe(route.params.recipeId as string);
+
+const router = useRouter();
 </script>
 
 <template>
-  <div class="px-4 py-4 sm:px-8">
+  <div class="flex w-full flex-col gap-8 px-4 py-4 sm:px-8">
+    <div class="mx-auto mt-4 w-full max-w-3xl items-center gap-4">
+      <Button
+        variant="ghost"
+        class="absolute size-12 cursor-pointer"
+        @click="router.back()"
+      >
+        <ArrowLeft class="size-10 stroke-3" />
+      </Button>
+      <h1 class="w-full text-center">Detail Recipe</h1>
+    </div>
+
     <div
-      class="border-primary bg-card mx-auto mb-8 flex h-full min-h-[calc(100dvh-8rem)] max-w-3xl rounded-xl border-6 p-4"
+      class="border-primary bg-card mx-auto mb-8 flex h-full min-h-[calc(100dvh-14rem)] w-full max-w-3xl rounded-xl border-6 p-4"
     >
       <div
         class="border-secondary flex flex-1 flex-col gap-8 rounded-xl border-6 p-8"
