@@ -2,7 +2,7 @@
 export interface Recipe {
   id: string;
   _id: string;
-  ingredients: string;
+  ingredient_item: string;
   instructions: string;
   title: string;
 }

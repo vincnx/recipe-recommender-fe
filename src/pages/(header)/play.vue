@@ -36,7 +36,7 @@ function handleSubmit() {
           router.push({
             path: "/recipes",
             query: {
-              ids: data.map((recipe) => recipe._id),
+              ids: data.map((recipe) => recipe.id),
             },
           });
         },
