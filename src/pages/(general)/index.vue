@@ -1,14 +1,27 @@
 <script setup lang="ts">
+import { ScratchToReveal } from "@/components/ui/scratch-to-reveal";
+import { useResponsive } from "@/composables/useResponsive";
 import { DisplayCard } from "@/features/(general)/@index/components";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+const { isSm } = useResponsive();
 </script>
 
 <template>
   <div class="flex items-center justify-center overflow-hidden">
-    <h1 class="text-center text-6xl sm:text-8xl md:text-9xl">
-      Reveal The Recipe
+    <h1
+      class="gap flex flex-wrap items-center justify-center gap-2 text-center text-6xl sm:text-8xl md:text-9xl"
+    >
+      Reveal The
+      <ScratchToReveal
+        :width="isSm ? 400 : 200"
+        :height="isSm ? 250 : 125"
+        :min-scratch-percentage="80"
+        class="mx-auto flex items-center justify-center overflow-hidden rounded-2xl"
+      >
+        <p>Recipe</p>
+      </ScratchToReveal>
     </h1>
 
     <div class="fixed bottom-0 w-44 overflow-visible sm:-bottom-12 sm:w-72">

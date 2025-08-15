@@ -60,16 +60,6 @@ function handleClick() {
         <h2 class="text-4xl capitalize sm:text-5xl">{{ title }}</h2>
       </div>
     </div>
-    <div
-      class="bg-background absolute size-full [transform:rotateY(180deg)] [backface-visibility:hidden]"
-    >
-      <div class="h-auto w-44 sm:w-72" />
-      <div
-        class="absolute inset-0 m-10 flex flex-1 flex-col items-center justify-center text-center text-2xl font-bold"
-      >
-        <h2 class="text-4xl capitalize sm:text-5xl">{{ title }}</h2>
-      </div>
-    </div>
   </div>
 </template>
 
