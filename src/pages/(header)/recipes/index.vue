@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { Button } from "@/components/ui/button";
 import { useFetchRecipes } from "@/composables/requests/useFetchRecipes";
-import { RecipeCard } from "@/features/(header)/recipes/@index/components";
+import {
+  RecipeCard,
+  RecipeCardSkeleton,
+} from "@/features/(header)/recipes/@index/components";
 import { useUrlSearchParams } from "@vueuse/core";
 import { ArrowLeft } from "lucide-vue-next";
 import { useRouter } from "vue-router";
 
 const params = useUrlSearchParams("history");
-const { data } = useFetchRecipes(params.ids as string[]);
+const { data, isLoading } = useFetchRecipes(params.ids as string[]);
 const router = useRouter();
 </script>
 
@@ -24,8 +27,15 @@ const router = useRouter();
       <h1 class="text-center">Pick a Card</h1>
     </div>
 
-    <div class="mx-auto flex w-fit max-w-3xl gap-2 sm:gap-4">
+    <div class="mx-auto flex w-full max-w-3xl gap-2 sm:gap-4">
+      <div v-if="isLoading" class="grid w-full grid-rows-3 gap-4">
+        <div class="flex w-full gap-4" v-for="i in 3" :key="i">
+          <RecipeCardSkeleton v-for="j in 3" :key="j" />
+        </div>
+      </div>
+
       <div
+        v-else
         v-for="columnIndex in Math.ceil((data?.length ?? 0) / 3)"
         :key="columnIndex"
         class="flex w-fit flex-col gap-3 sm:gap-4"

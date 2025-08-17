@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useFetchRecipe } from "@/composables/requests/useFetchRecipe";
 import { ArrowLeft } from "lucide-vue-next";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute("/recipes/:recipeId");
 
-const { data } = useFetchRecipe(route.params.recipeId as string);
+const { data, isLoading } = useFetchRecipe(route.params.recipeId as string);
 
 const router = useRouter();
 </script>
@@ -25,6 +26,13 @@ const router = useRouter();
     </div>
 
     <div
+      v-if="isLoading"
+      class="mx-auto flex h-full min-h-[calc(100dvh-14rem)] w-full max-w-3xl"
+    >
+      <Skeleton class="flex-1" />
+    </div>
+    <div
+      v-else
       class="border-primary bg-card mx-auto mb-8 flex h-full min-h-[calc(100dvh-14rem)] w-full max-w-3xl rounded-xl border-6 p-4"
     >
       <div
