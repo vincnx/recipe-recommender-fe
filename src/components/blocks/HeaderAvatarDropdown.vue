@@ -43,10 +43,12 @@ const emit = defineEmits<{
         <UserRound class="size-5" />
         Profile
       </DropdownMenuItem>
-      <DropdownMenuItem>
-        <LibraryBig class="size-5" />
-        Collections
-      </DropdownMenuItem>
+      <RouterLink to="/collections">
+        <DropdownMenuItem>
+          <LibraryBig class="size-5" />
+          Collections
+        </DropdownMenuItem>
+      </RouterLink>
       <DropdownMenuSeparator />
       <DropdownMenuItem @click="emit('logout')">
         <LogOut class="size-5" />

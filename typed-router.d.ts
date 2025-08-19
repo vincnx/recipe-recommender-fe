@@ -22,7 +22,8 @@ declare module 'vue-router/auto-routes' {
     '/(general)/': RouteRecordInfo<'/(general)/', '/', Record<never, never>, Record<never, never>>,
     '/(general)/about': RouteRecordInfo<'/(general)/about', '/about', Record<never, never>, Record<never, never>>,
     '/(general)/auth/google/callback': RouteRecordInfo<'/(general)/auth/google/callback', '/auth/google/callback', Record<never, never>, Record<never, never>>,
-    '/(header)': RouteRecordInfo<'/(header)', '/', Record<never, never>, Record<never, never>, '/(header)/play' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]'>,
+    '/(header)': RouteRecordInfo<'/(header)', '/', Record<never, never>, Record<never, never>, '/(header)/collections' | '/(header)/play' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]'>,
+    '/(header)/collections': RouteRecordInfo<'/(header)/collections', '/collections', Record<never, never>, Record<never, never>>,
     '/(header)/play': RouteRecordInfo<'/(header)/play', '/play', Record<never, never>, Record<never, never>>,
     '/(header)/recipes/': RouteRecordInfo<'/(header)/recipes/', '/recipes', Record<never, never>, Record<never, never>>,
     '/(header)/recipes/[recipeId]': RouteRecordInfo<'/(header)/recipes/[recipeId]', '/recipes/:recipeId', { recipeId: ParamValue<true> }, { recipeId: ParamValue<false> }>,
@@ -56,8 +57,12 @@ declare module 'vue-router/auto-routes' {
       views: never
     }
     'src/pages/(header).vue': {
-      routes: '/(header)' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]' | '/(header)/play' | '/(header)/recipes'
+      routes: '/(header)' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]' | '/(header)/collections' | '/(header)/play' | '/(header)/recipes'
       views: 'default'
+    }
+    'src/pages/(header)/collections.vue': {
+      routes: '/(header)/collections'
+      views: never
     }
     'src/pages/(header)/play.vue': {
       routes: '/(header)/play'

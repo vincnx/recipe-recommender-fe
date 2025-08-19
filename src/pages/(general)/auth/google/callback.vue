@@ -17,6 +17,7 @@ watch(
     if (!data.value) return;
 
     authStore.setUser({
+      _id: data.value.user._id,
       email: data.value.user.email,
       name: data.value.user.name,
       picture: data.value.user.picture,
