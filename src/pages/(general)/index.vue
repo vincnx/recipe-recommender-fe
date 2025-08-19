@@ -1,28 +1,45 @@
 <script setup lang="ts">
 import { ScratchToReveal } from "@/components/ui/scratch-to-reveal";
+import { SparklesText } from "@/components/ui/sparkles-text";
 import { useResponsive } from "@/composables/useResponsive";
 import { DisplayCard } from "@/features/(general)/@index/components";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const { isSm } = useResponsive();
+const isScratched = ref(false);
+
+const width = computed(() => (isSm.value ? 400 : 200));
+const height = computed(() => (isSm.value ? 220 : 100));
 </script>
 
 <template>
   <div class="flex items-center justify-center overflow-hidden">
-    <h1
-      class="gap flex flex-wrap items-center justify-center gap-2 text-center text-6xl sm:text-8xl md:text-9xl"
-    >
-      Reveal The
-      <ScratchToReveal
-        :width="isSm ? 400 : 200"
-        :height="isSm ? 250 : 125"
-        :min-scratch-percentage="80"
-        class="mx-auto flex items-center justify-center overflow-hidden rounded-2xl"
+    <div class="flex flex-col items-center gap-3">
+      <h1
+        class="gap flex flex-wrap items-center justify-center gap-2 text-center text-6xl sm:text-8xl md:text-9xl"
       >
-        <p>Recipe</p>
-      </ScratchToReveal>
-    </h1>
+        Reveal The
+        <ScratchToReveal
+          :width="width"
+          :height="height"
+          :min-scratch-percentage="80"
+          class="mx-auto flex items-center justify-center overflow-hidden rounded-2xl"
+          v-model:is-scratched="isScratched"
+        >
+          <p>Recipe</p>
+        </ScratchToReveal>
+      </h1>
+
+      <SparklesText
+        v-if="isScratched"
+        text="From fridge to table: discover meals made from what you already have."
+        :colors="{ first: '#cb9520', second: '#efc555' }"
+        :sparkles-count="10"
+        class="w-1/2 text-center text-xl font-medium sm:text-3xl"
+      />
+    </div>
 
     <div class="fixed bottom-0 w-44 overflow-visible sm:-bottom-12 sm:w-72">
       <div class="relative">

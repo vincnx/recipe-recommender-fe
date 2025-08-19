@@ -48,7 +48,7 @@ watch(
                   <X class="size-6 stroke-3" />
                 </Button>
               </div>
-              <div class="border-secondary rounded-full border-3"></div>
+              <div class="border-secondary rounded-full border-4"></div>
               <FormMessage />
             </FormItem>
           </FormField>

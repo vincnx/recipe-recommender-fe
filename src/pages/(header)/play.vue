@@ -76,19 +76,19 @@ watch(
         </ul>
       </AlertDescription>
     </Alert>
-    <div class="relative mx-auto mb-8 max-w-3xl">
-      <img src="@/assets/recipe-paper.svg" class="absolute w-full" />
+    <div class="relative mx-auto max-w-3xl">
+      <img src="@/assets/recipe-paper.svg" class="w-full" />
       <form
         @submit.prevent="handleSubmit"
         @keydown.enter.prevent
-        class="absolute flex h-[calc(min((100vw-32px),768px)/4*5)] w-full flex-col gap-8 p-8 sm:h-[calc(min((100vw-64px),768px)/4*5))] sm:p-12"
+        class="absolute inset-0 flex h-[calc(min((100vw-32px),768px)/4*5)] w-full flex-col gap-8 p-8 sm:h-[calc(min((100vw-64px),768px)/4*5))] sm:p-12"
       >
         <h1 class="text-center text-3xl sm:text-4xl">Ingredients</h1>
         <div class="scrollbar-hide flex-1 overflow-y-scroll">
           <IngredientForm :form="form" />
         </div>
         <Button
-          :disabled="!isFormValid()"
+          :disabled="!isFormValid() || isPending"
           :is-loading="isPending"
           type="submit"
         >

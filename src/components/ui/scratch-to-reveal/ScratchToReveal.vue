@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import { cn } from "@/lib/utils";
 import { Motion, useAnimate } from "motion-v";
-import { computed, onMounted, onUnmounted, ref, type Ref } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch, type Ref } from "vue";
 
 const cursorImg =
   "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNSIgc3R5bGU9ImZpbGw6I2ZmZjtzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MXB4OyIgLz4KPC9zdmc+'), auto";
@@ -41,6 +41,8 @@ interface Props {
   minScratchPercentage?: number;
   scratchImage?: string; // New prop for the scratch image
 }
+
+const isScratched = defineModel<boolean>("isScratched");
 
 const canvasRef = ref<HTMLCanvasElement>();
 
@@ -72,28 +74,24 @@ const canvasWidth = computed(() => canvasRef.value?.width || props.width);
 const canvasHeight = computed(() => canvasRef.value?.height || props.height);
 
 function drawCanvas(canvasRef: Ref<HTMLCanvasElement>) {
-  context.value = canvasRef.value.getContext("2d")!;
+  if (!canvasRef.value) return;
 
-  // Create a new image
-  const img = new Image();
+  const ctx = canvasRef.value.getContext("2d")!;
+  context.value = ctx;
+
+  const img = new Image(); // create a new image for each draw
   img.src = props.scratchImage;
 
-  // Draw the image once it's loaded
   img.onload = () => {
-    if (!context.value) return;
-
-    // You can choose one of these methods to draw the image:
-
-    // Method 1: Stretch the image to fill the canvas
-    context.value.drawImage(img, 0, 0, canvasWidth.value, canvasHeight.value);
-
-    // Method 2: Pattern fill (repeating image)
-    // const pattern = context.value.createPattern(img, 'repeat');
-    // if (pattern) {
-    //   context.value.fillStyle = pattern;
-    //   context.value.fillRect(0, 0, canvasWidth.value, canvasHeight.value);
-    // }
+    ctx.clearRect(0, 0, canvasRef.value!.width, canvasRef.value!.height);
+    ctx.drawImage(img, 0, 0, canvasRef.value.width, canvasRef.value.height);
   };
+
+  // Optional: in case image is cached
+  if (img.complete) {
+    ctx.clearRect(0, 0, canvasRef.value.width, canvasRef.value.height);
+    ctx.drawImage(img, 0, 0, canvasRef.value.width, canvasRef.value.height);
+  }
 }
 
 function scratch(clientX: number, clientY: number) {
@@ -166,6 +164,7 @@ function checkCompletion() {
       context.value.clearRect(0, 0, canvasWidth.value, canvasHeight.value);
 
       startAnimation();
+      isScratched.value = true;
     } else {
       isScratching.value = false;
     }
@@ -189,6 +188,16 @@ onMounted(() => {
   drawCanvas(canvasRef as Ref<HTMLCanvasElement>);
 
   addEventListeners();
+});
+
+watch([() => props.width, () => props.height], () => {
+  if (isScratched) return;
+  if (!canvasRef.value) return;
+  // Resize the canvas
+  canvasRef.value.width = props.width;
+  canvasRef.value.height = props.height;
+  // Redraw the scratch image
+  drawCanvas(canvasRef as Ref<HTMLCanvasElement>);
 });
 
 function removeEventListeners() {
