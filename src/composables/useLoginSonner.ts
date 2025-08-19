@@ -36,8 +36,16 @@ export function useLoginSonner() {
     isActive.value = true;
     showSonner();
 
-    intervalId.value = setInterval(showSonner, 20000);
+    intervalId.value = setInterval(showSonner, 10000);
   };
 
-  return { startSonnerTimer };
+  const stopSonnerTimer = () => {
+    if (intervalId.value) {
+      clearInterval(intervalId.value);
+      intervalId.value = null;
+    }
+    isActive.value = false;
+  };
+
+  return { startSonnerTimer, stopSonnerTimer };
 }

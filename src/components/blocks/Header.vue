@@ -36,21 +36,22 @@ function handleLogout() {
 <template>
   <div class="bg-background fixed inset-0 z-50 h-16 border-b-6">
     <div class="mx-auto flex h-full max-w-7xl items-center px-4">
-      <RouterLink to="/">
-        <h1 class="text-xl leading-none">
-          Reveal <br />
-          The Recipe
-        </h1>
-      </RouterLink>
+      <div class="flex items-end gap-2">
+        <RouterLink to="/">
+          <h1 class="text-xl leading-none">
+            Reveal <br />
+            The Recipe
+          </h1>
+        </RouterLink>
+        <img
+          src="@/assets/techno-art-logo.png"
+          alt=""
+          class="h-auto w-28 sm:w-42"
+        />
+      </div>
 
       <div class="ms-auto">
         <div v-if="authStore.user">
-          <!-- <img
-            :src="authStore.user.picture"
-            alt=""
-            class="size-10 rounded-full border-4"
-            referrerPolicy="no-referrer"
-          /> -->
           <HeaderAvatarDropdown
             :image-url="authStore.user.picture"
             :image-fallback="authStore.user.name.slice(0, 2)"
