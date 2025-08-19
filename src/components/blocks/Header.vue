@@ -2,12 +2,13 @@
 import { useFetchGoogleAuthUrl } from "@/composables/requests/useFetchGoogleAuthUrl";
 import { useLogout } from "@/composables/requests/useLogout";
 import { useAuthStore } from "@/stores/auth";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { Button } from "../ui/button";
 import HeaderAvatarDropdown from "./HeaderAvatarDropdown.vue";
 
 const { data, isLoading } = useFetchGoogleAuthUrl();
 const route = useRoute();
+const router = useRouter();
 const authStore = useAuthStore();
 const { mutate } = useLogout();
 
@@ -26,6 +27,7 @@ function handleLogout() {
   mutate(undefined, {
     onSuccess: () => {
       authStore.setUser(null);
+      router.push("/");
     },
   });
 }

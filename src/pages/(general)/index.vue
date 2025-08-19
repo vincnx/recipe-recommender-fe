@@ -3,6 +3,7 @@ import { ScratchToReveal } from "@/components/ui/scratch-to-reveal";
 import { SparklesText } from "@/components/ui/sparkles-text";
 import { useResponsive } from "@/composables/useResponsive";
 import { DisplayCard } from "@/features/(general)/@index/components";
+import { cn } from "@/lib/utils";
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -33,11 +34,15 @@ const height = computed(() => (isSm.value ? 220 : 100));
       </h1>
 
       <SparklesText
-        v-if="isScratched"
         text="From fridge to table: discover meals made from what you already have."
         :colors="{ first: '#cb9520', second: '#efc555' }"
         :sparkles-count="10"
-        class="w-1/2 text-center text-xl font-medium sm:text-3xl"
+        :class="
+          cn(
+            'w-1/2 text-center text-xl font-medium sm:text-3xl',
+            isScratched ? 'visible' : 'invisible',
+          )
+        "
       />
     </div>
 

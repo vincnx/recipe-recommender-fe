@@ -21,9 +21,10 @@ declare module 'vue-router/auto-routes' {
     '/(general)': RouteRecordInfo<'/(general)', '/', Record<never, never>, Record<never, never>, '/(general)/' | '/(general)/about'>,
     '/(general)/': RouteRecordInfo<'/(general)/', '/', Record<never, never>, Record<never, never>>,
     '/(general)/about': RouteRecordInfo<'/(general)/about', '/about', Record<never, never>, Record<never, never>>,
-    '/(header)': RouteRecordInfo<'/(header)', '/', Record<never, never>, Record<never, never>, '/(header)/collections' | '/(header)/play' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]'>,
+    '/(header)': RouteRecordInfo<'/(header)', '/', Record<never, never>, Record<never, never>, '/(header)/collections' | '/(header)/play' | '/(header)/profile' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]'>,
     '/(header)/collections': RouteRecordInfo<'/(header)/collections', '/collections', Record<never, never>, Record<never, never>>,
     '/(header)/play': RouteRecordInfo<'/(header)/play', '/play', Record<never, never>, Record<never, never>>,
+    '/(header)/profile': RouteRecordInfo<'/(header)/profile', '/profile', Record<never, never>, Record<never, never>>,
     '/(header)/recipes/': RouteRecordInfo<'/(header)/recipes/', '/recipes', Record<never, never>, Record<never, never>>,
     '/(header)/recipes/[recipeId]': RouteRecordInfo<'/(header)/recipes/[recipeId]', '/recipes/:recipeId', { recipeId: ParamValue<true> }, { recipeId: ParamValue<false> }>,
     '/auth/google/callback': RouteRecordInfo<'/auth/google/callback', '/auth/google/callback', Record<never, never>, Record<never, never>>,
@@ -41,7 +42,7 @@ declare module 'vue-router/auto-routes' {
    */
   export interface _RouteFileInfoMap {
     'src/pages/(general).vue': {
-      routes: '/(general)' | '/(general)/' | '/(general)/about' | '/(general)/auth' | '/(general)/auth/google'
+      routes: '/(general)' | '/(general)/' | '/(general)/about'
       views: 'default'
     }
     'src/pages/(general)/index.vue': {
@@ -53,7 +54,7 @@ declare module 'vue-router/auto-routes' {
       views: never
     }
     'src/pages/(header).vue': {
-      routes: '/(header)' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]' | '/(header)/collections' | '/(header)/play' | '/(header)/recipes'
+      routes: '/(header)' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]' | '/(header)/collections' | '/(header)/play' | '/(header)/profile' | '/(header)/recipes'
       views: 'default'
     }
     'src/pages/(header)/collections.vue': {
@@ -62,6 +63,10 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/(header)/play.vue': {
       routes: '/(header)/play'
+      views: never
+    }
+    'src/pages/(header)/profile.vue': {
+      routes: '/(header)/profile'
       views: never
     }
     'src/pages/(header)/recipes/index.vue': {

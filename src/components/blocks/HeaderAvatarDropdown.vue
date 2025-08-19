@@ -39,10 +39,12 @@ const emit = defineEmits<{
         <p class="text-primary -mt-2 text-lg">{{ email }}</p>
       </div>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>
-        <UserRound class="size-5" />
-        Profile
-      </DropdownMenuItem>
+      <RouterLink to="/profile">
+        <DropdownMenuItem>
+          <UserRound class="size-5" />
+          Profile
+        </DropdownMenuItem>
+      </RouterLink>
       <RouterLink to="/collections">
         <DropdownMenuItem>
           <LibraryBig class="size-5" />
