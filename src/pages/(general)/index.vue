@@ -59,7 +59,8 @@ const height = computed(() => (isSm.value ? 220 : 100));
           class="-bottom-12 hover:-bottom-6 active:-bottom-6 sm:-bottom-6 sm:hover:-bottom-0 sm:active:-bottom-0"
         />
         <DisplayCard
-          title="tes"
+          @click="() => router.push('todos')"
+          title="TODOs"
           class="-right-36 -bottom-18 rotate-30 hover:-bottom-12 active:-bottom-12 sm:-right-52"
           :rotate-deg="30"
         />
