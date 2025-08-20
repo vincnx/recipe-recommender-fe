@@ -21,8 +21,9 @@ declare module 'vue-router/auto-routes' {
     '/(general)': RouteRecordInfo<'/(general)', '/', Record<never, never>, Record<never, never>, '/(general)/' | '/(general)/about'>,
     '/(general)/': RouteRecordInfo<'/(general)/', '/', Record<never, never>, Record<never, never>>,
     '/(general)/about': RouteRecordInfo<'/(general)/about', '/about', Record<never, never>, Record<never, never>>,
-    '/(header)': RouteRecordInfo<'/(header)', '/', Record<never, never>, Record<never, never>, '/(header)/collections' | '/(header)/play' | '/(header)/profile' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]'>,
-    '/(header)/collections': RouteRecordInfo<'/(header)/collections', '/collections', Record<never, never>, Record<never, never>>,
+    '/(header)': RouteRecordInfo<'/(header)', '/', Record<never, never>, Record<never, never>, '/(header)/collections/' | '/(header)/collections/[recipeId]' | '/(header)/play' | '/(header)/profile' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]'>,
+    '/(header)/collections/': RouteRecordInfo<'/(header)/collections/', '/collections', Record<never, never>, Record<never, never>>,
+    '/(header)/collections/[recipeId]': RouteRecordInfo<'/(header)/collections/[recipeId]', '/collections/:recipeId', { recipeId: ParamValue<true> }, { recipeId: ParamValue<false> }>,
     '/(header)/play': RouteRecordInfo<'/(header)/play', '/play', Record<never, never>, Record<never, never>>,
     '/(header)/profile': RouteRecordInfo<'/(header)/profile', '/profile', Record<never, never>, Record<never, never>>,
     '/(header)/recipes/': RouteRecordInfo<'/(header)/recipes/', '/recipes', Record<never, never>, Record<never, never>>,
@@ -54,11 +55,15 @@ declare module 'vue-router/auto-routes' {
       views: never
     }
     'src/pages/(header).vue': {
-      routes: '/(header)' | '/(header)/recipes/' | '/(header)/recipes/[recipeId]' | '/(header)/collections' | '/(header)/play' | '/(header)/profile' | '/(header)/recipes'
+      routes: '/(header)' | '/(header)/recipes/' | '/(header)/collections/' | '/(header)/recipes/[recipeId]' | '/(header)/collections/[recipeId]' | '/(header)/colections' | '/(header)/collections' | '/(header)/play' | '/(header)/profile' | '/(header)/recipes'
       views: 'default'
     }
-    'src/pages/(header)/collections.vue': {
-      routes: '/(header)/collections'
+    'src/pages/(header)/collections/index.vue': {
+      routes: '/(header)/collections/'
+      views: never
+    }
+    'src/pages/(header)/collections/[recipeId].vue': {
+      routes: '/(header)/collections/[recipeId]'
       views: never
     }
     'src/pages/(header)/play.vue': {

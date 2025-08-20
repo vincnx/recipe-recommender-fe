@@ -51,7 +51,7 @@ const { data, isLoading } = useFetchPaginateRecipeCollections(
         v-for="d in data?.items"
         :title="d.title"
         :key="d._id"
-        @click="router.push(`recipes/${d._id}`)"
+        @click="router.push(`collections/${d._id}`)"
       />
     </div>
 
