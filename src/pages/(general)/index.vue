@@ -16,7 +16,7 @@ const height = computed(() => (isSm.value ? 220 : 100));
 </script>
 
 <template>
-  <div class="flex items-center justify-center overflow-hidden">
+  <div class="-mt-16 flex items-center justify-center overflow-hidden">
     <div class="flex flex-col items-center gap-3">
       <h1
         class="gap flex flex-wrap items-center justify-center gap-2 text-center text-6xl sm:text-8xl md:text-9xl"

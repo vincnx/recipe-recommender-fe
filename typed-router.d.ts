@@ -52,7 +52,7 @@ declare module 'vue-router/auto-routes' {
       views: never
     }
     'src/pages/(header).vue': {
-      routes: '/(header)' | '/(header)/recipes/' | '/(header)/collections/' | '/(header)/recipes/[recipeId]' | '/(header)/collections/[recipeId]' | '/(header)/about' | '/(header)/colections' | '/(header)/collections' | '/(header)/play' | '/(header)/profile' | '/(header)/recipes' | '/(header)/todos'
+      routes: '/(header)' | '/(header)/collections/' | '/(header)/recipes/' | '/(header)/collections/[recipeId]' | '/(header)/recipes/[recipeId]' | '/(header)/about' | '/(header)/collections' | '/(header)/play' | '/(header)/profile' | '/(header)/recipes' | '/(header)/todos'
       views: 'default'
     }
     'src/pages/(header)/about.vue': {
