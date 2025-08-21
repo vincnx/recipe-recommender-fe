@@ -1,5 +1,27 @@
-# Vue 3 + TypeScript + Vite
+# Recipe Recommender
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Instalation
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+1. clone this repository to your local machine
+
+```bash
+git clone https://github.com/vincnx/recipe-recommender-fe.git
+```
+
+2. install project dependencies
+
+```bash
+npm install
+```
+
+3. add .env file, see example from .env.example
+
+## Usage
+
+### Use the app
+
+1. run the project
+
+```bash
+npm run dev
+```
