@@ -43,11 +43,6 @@ function handleLogout() {
             The Recipe
           </h1>
         </RouterLink>
-        <img
-          src="@/assets/techno-art-logo.png"
-          alt=""
-          class="h-auto w-28 sm:w-42"
-        />
       </div>
 
       <div class="ms-auto">

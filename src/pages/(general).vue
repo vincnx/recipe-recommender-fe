@@ -18,11 +18,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <img
-    src="@/assets/techno-art-logo.png"
-    alt=""
-    class="fixed inset-4 h-auto w-42"
-  />
   <Toaster
     v-if="!authStore.user"
     position="top-right"
