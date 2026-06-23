@@ -4,14 +4,6 @@
   <div class="mx-auto max-w-3xl p-4 sm:px-8">
     <div class="flex flex-col items-center gap-4 sm:gap-12">
       <h1 class="text-center">TODOs / Future Work</h1>
-      <p class="text-justify text-xl sm:text-2xl">
-        So here's the deal:
-        <b> Reveal the Recipe was built in roughly one week. </b>
-        That's right—7 days of code, caffeine, and me trying not to rage quit
-        when something broke at 2 AM. Because of that, the app right now is more
-        like a scrappy little food truck than a five-star restaurant: it gets
-        the job done, but it could definitely use more seasoning.
-      </p>
 
       <p class="text-center text-xl sm:text-2xl">
         Before we jump in to the future work, i think we need to consider
@@ -38,14 +30,6 @@
         is shoved in the back, and nobody knows if that jar of pickles is still
         good. The dataset works, but it could be a lot cleaner, which means
         sometimes the recipes aren't as smooth or creative as they could be.
-
-        <br />
-        <br />
-
-        <b> No unit tests (oops). </b>
-        OOps, I skipped writing unit tests because… well… deadlines and
-        caffeine. That means if bugs appear, we're all just going to roll with
-        it and call them “mystery challenges.” Fun, right?
 
         <br />
         <br />
