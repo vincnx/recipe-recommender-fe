@@ -17,7 +17,7 @@
       ref="canvasRef"
       :width="width"
       :height="height"
-      class="absolute top-0 left-0"
+      class="absolute top-0 left-0 h-full w-full"
       @mousedown="handleMouseDown"
       @touchstart="handleTouchStart"
     />
@@ -48,7 +48,7 @@ const canvasRef = ref<HTMLCanvasElement>();
 
 const props = withDefaults(defineProps<Props>(), {
   minScratchPercentage: 50,
-  scratchImage: "/src/assets/scratch.svg", // Default scratch image path
+  scratchImage: "/scratch.svg", // Default scratch image path
 });
 
 const containerWidth = computed(() => props.width + "px");
@@ -79,19 +79,19 @@ function drawCanvas(canvasRef: Ref<HTMLCanvasElement>) {
   const ctx = canvasRef.value.getContext("2d")!;
   context.value = ctx;
 
-  const img = new Image(); // create a new image for each draw
-  img.src = props.scratchImage;
+  const dpr = window.devicePixelRatio || 1;
+  canvasRef.value.width = props.width * dpr;
+  canvasRef.value.height = props.height * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
 
+  const img = new Image();
   img.onload = () => {
-    ctx.clearRect(0, 0, canvasRef.value!.width, canvasRef.value!.height);
-    ctx.drawImage(img, 0, 0, canvasRef.value.width, canvasRef.value.height);
+    ctx.clearRect(0, 0, props.width, props.height);
+    ctx.drawImage(img, 0, 0, props.width, props.height);
   };
-
-  // Optional: in case image is cached
-  if (img.complete) {
-    ctx.clearRect(0, 0, canvasRef.value.width, canvasRef.value.height);
-    ctx.drawImage(img, 0, 0, canvasRef.value.width, canvasRef.value.height);
-  }
+  img.src = props.scratchImage;
 }
 
 function scratch(clientX: number, clientY: number) {
@@ -102,7 +102,7 @@ function scratch(clientX: number, clientY: number) {
 
     context.value.globalCompositeOperation = "destination-out";
     context.value.beginPath();
-    context.value.arc(x, y, 30, 0, Math.PI * 2);
+    context.value.arc(x, y, 20, 0, Math.PI * 2);
     context.value.fill();
   }
 }
